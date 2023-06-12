@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "homepage": "https://hamishw.com",
+  "homepage": "localhost:3000",
   "description": "Portfolio site for Brijesh Kuvadiya",
   "repository": "https://github.com/brijk20/portfolio-3js",
   "author": "Brijesh Kuvadiya",
