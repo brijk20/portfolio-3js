@@ -112,7 +112,7 @@ const dark = {
   rgbBackground: '17 17 17',
   rgbBackgroundLight: '26 26 26',
   rgbPrimary: '0 229 255',
-  rgbAccent: '0 229 255',
+  rgbAccent: '155 89 182', // Purple shade
   rgbText: '255 255 255',
   rgbError: '255 55 102',
   colorTextTitle: 'rgb(var(--rgbText) / 1)',

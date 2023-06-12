@@ -25,12 +25,12 @@ export const socialLinks = [
   },
   {
     label: 'Figma',
-    url: 'https://www.figma.com/@Hamish',
+    url: 'https://www.figma.com/',
     icon: 'figma',
   },
   {
     label: 'Github',
-    url: 'https://github.com/HamishMW',
+    url: 'https://github.com/brijk20',
     icon: 'github',
   },
 ];

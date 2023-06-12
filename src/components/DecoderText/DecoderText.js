@@ -24,10 +24,73 @@ const glyphs = [
   'パ', 'ピ', 'プ', 'ペ', 'ポ',
 ];
 
+const glyphs_hindi = [
+  'अ',
+  'आ',
+  'इ',
+  'ई',
+  'उ',
+  'ऊ',
+  'ऋ',
+  'ए',
+  'ऐ',
+  'ओ',
+  'औ',
+  'क',
+  'ख',
+  'ग',
+  'घ',
+  'च',
+  'छ',
+  'ज',
+  'झ',
+  'ट',
+  'ठ',
+  'ड',
+  'ढ',
+  'ण',
+  'त',
+  'थ',
+  'द',
+  'ध',
+  'न',
+  'प',
+  'फ',
+  'ब',
+  'भ',
+  'म',
+  'य',
+  'र',
+  'ल',
+  'व',
+  'श',
+  'ष',
+  'स',
+  'ह',
+  'क्ष',
+  'त्र',
+  'ज्ञ',
+];
+
 const CharType = {
   Glyph: 'glyph',
   Value: 'value',
 };
+
+// function shuffle(content, output, position) {
+//   return content.map((value, index) => {
+//     if (index < position) {
+//       return { type: CharType.Value, value };
+//     }
+
+//     if (position % 1 < 0.5) {
+//       const rand = Math.floor(Math.random() * glyphs.length);
+//       return { type: CharType.Glyph, value: glyphs[rand] };
+//     }
+
+//     return { type: CharType.Glyph, value: output[index].value };
+//   });
+// }
 
 function shuffle(content, output, position) {
   return content.map((value, index) => {
@@ -36,8 +99,8 @@ function shuffle(content, output, position) {
     }
 
     if (position % 1 < 0.5) {
-      const rand = Math.floor(Math.random() * glyphs.length);
-      return { type: CharType.Glyph, value: glyphs[rand] };
+      const rand = Math.floor(Math.random() * glyphs_hindi.length);
+      return { type: CharType.Glyph, value: glyphs_hindi[rand] };
     }
 
     return { type: CharType.Glyph, value: output[index].value };
@@ -49,16 +112,28 @@ export const DecoderText = memo(
     const output = useRef([{ type: CharType.Glyph, value: '' }]);
     const container = useRef();
     const reduceMotion = useReducedMotion();
-    const decoderSpring = useSpring(0, { stiffness: 8, damping: 5 });
+    const decoderSpring = useSpring(0, { stiffness: 25, damping: 15 });
 
     useEffect(() => {
       const containerInstance = container.current;
       const content = text.split('');
       let animation;
 
+      // const renderOutput = () => {
+      //   const characterMap = output.current.map(item => {
+      //     return `<span class="${styles[item.type]}">${item.value}</span>`;
+      //   });
+
+      //   containerInstance.innerHTML = characterMap.join('');
+      // };
+
       const renderOutput = () => {
         const characterMap = output.current.map(item => {
-          return `<span class="${styles[item.type]}">${item.value}</span>`;
+          if (item.type === CharType.Glyph) {
+            return `<span class="${styles[item.type]}">${item.value}</span>`;
+          } else {
+            return `<span>${item.value}</span>`; // Display Hindi text as-is
+          }
         });
 
         containerInstance.innerHTML = characterMap.join('');
